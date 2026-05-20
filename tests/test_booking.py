@@ -10,3 +10,7 @@ def test_tc04_weekend_surcharge():
     # Umur 35, Family, Weekend, 5 malam -> Weekend surcharge (+20%)
     result = calculate_booking(35, "Family", "Weekend", 5)
     assert result == "Weekend surcharge (+20%)"
+    
+    def test_invalid_stay_duration():
+        with pytest.raises(ValueError):
+            calculate_booking(25, "Standard", "Weekday", 15) # 15 malam (Invalid)
