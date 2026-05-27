@@ -11,4 +11,7 @@ def test_stay_duration_less_than_one():
 def test_stay_duration_more_than_fourteen():
     with pytest.raises(ValueError, match="Booking duration must be between 1 and 14 nights"):
         calculate_booking_fee(guest_age=30, room_type="standard", booking_day="weekday", stay_duration=15)
-        
+
+def test_stay_duration_valid():
+    result = calculate_booking_fee(guest_age=30, room_type="standard", booking_day="weekday", stay_duration=5)
+    assert result == "Valid booking"
