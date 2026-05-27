@@ -17,7 +17,7 @@ def test_TC03():
 def test_TC04():
     assert calculate_booking_fee(35, "Family", "Weekend", 5) == 900.0
 
-# TC09 & Validasi Durasi Inap (Milikmu) - Di atas 14 malam
+# TC09 & Validasi Durasi Inap - Di atas 14 malam
 def test_invalid_duration_above_max():
     with pytest.raises(ValueError):
         calculate_booking_fee(
@@ -27,7 +27,7 @@ def test_invalid_duration_above_max():
             stay_duration=15
         )
 
-# Validasi Durasi Inap (Milikmu) - Di bawah 1 malam
+# Validasi Durasi Inap - Di bawah 1 malam
 def test_invalid_duration_below_min():
     with pytest.raises(ValueError):
         calculate_booking_fee(
