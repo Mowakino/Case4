@@ -1,3 +1,10 @@
+def _validate_inputs(guest_age: int, stay_duration: int) -> None:
+    """Validate age and duration inputs."""
+    if guest_age < 0:
+        raise ValueError("Invalid age: age cannot be negative.")
+    if stay_duration < 1 or stay_duration > 14:
+        raise ValueError("Invalid duration: stay must be between 1 and 14 nights.")
+
 def hotel_booking_price(
     guest_age: int,
     room_type: str,
@@ -7,31 +14,20 @@ def hotel_booking_price(
     """
     Compute hotel booking price based on business rules.
     - Children under 5 stay free
-    - Standard room: $100/night, max 2 guests
-    - Family room: $150/night, max 5 guests
+    - Standard room: $100/night
+    - Family room: $150/night
     - Weekend booking: +20%
     - Holiday season: +40%
     - Booking duration: 1-14 nights
     """
-    # Validasi age
-    if guest_age < 0:
-        raise ValueError("Invalid age: age cannot be negative.")
+    _validate_inputs(guest_age, stay_duration)
 
-    # Validasi duration
-    if stay_duration < 1 or stay_duration > 14:
-        raise ValueError("Invalid duration: stay must be between 1 and 14 nights.")
-
-    # Anak di bawah 5 tahun gratis
     if guest_age < 5:
         return 0.0
 
-    # Base rate per malam
     base_rate = 100.0 if room_type == "standard" else 150.0
-
-    # Hitung subtotal
     subtotal = base_rate * stay_duration
 
-    # Surcharge
     if booking_day == "weekend":
         subtotal *= 1.20
     elif booking_day == "holiday":
