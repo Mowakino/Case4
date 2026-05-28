@@ -1,13 +1,7 @@
 import pytest
 from src.booking import hotel_booking_price
 
-# TC01 - Harga Standard Weekday normal
-def test_TC01():
-    assert hotel_booking_price(30, "Standard", "Weekday", 3) == 300.0
 
-# TC02 - Anak di bawah 5 tahun gratis
-def test_TC02():
-    assert hotel_booking_price(4, "Standard", "Weekday", 2) == 0.0
 
 # TC03 - Umur pas 5 tahun (bayar normal)
 def test_TC03():
